@@ -1,0 +1,14 @@
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let animal of animals" (click)="onSelectedAnimal(animal.name)">
+      <td>{{ animal.name }}</td>
+      <td>{{ animal.age }}</td>
+    </tr>
+  </tbody>
+</table>

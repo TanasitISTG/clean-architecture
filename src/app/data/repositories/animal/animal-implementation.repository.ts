@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Observable, filter, from, map, toArray } from 'rxjs';
+import { Observable, from, map, mergeMap, toArray } from 'rxjs';
 import { AnimalImplementationRepositoryMapper } from './animal.mapper';
 import { AnimalEntity } from './animal.entity';
 import { AnimalModel } from '../../../core/models/animal.model';
 import { AnimalRepository } from '../../../core/repositories/animal.repositoy';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -11,19 +12,26 @@ import { AnimalRepository } from '../../../core/repositories/animal.repositoy';
 export class AnimalImplementationRepository extends AnimalRepository {
   private mapper = new AnimalImplementationRepositoryMapper();
 
-  animals: AnimalEntity[] = [
-    { id: 1, name: 'Dog', age: 10 },
-    { id: 2, name: 'Cat', age: 5 },
-    { id: 3, name: 'Bird', age: 3 },
-    { id: 4, name: 'Fish', age: 1 },
-  ];
+  constructor(private http: HttpClient) {
+    super();
+  }
 
   getAnimals(): Observable<AnimalModel[]> {
-    return from(this.animals).pipe(map(this.mapper.mapFrom)).pipe(toArray());
+    return this.http
+      .get<AnimalEntity[]>(
+        'https://6653b5ca1c6af63f4675625d.mockapi.io/api/v1/animals'
+      )
+      .pipe(
+        mergeMap((animals: AnimalEntity[]) => from(animals)),
+        map(this.mapper.mapFrom),
+        toArray()
+      );
   }
   getAnimalByName(name: string): Observable<AnimalModel> {
-    return from(this.animals)
-      .pipe(filter((elephant: AnimalEntity) => elephant.name === name))
+    return this.http
+      .get<AnimalEntity>(
+        `https://6653b5ca1c6af63f4675625d.mockapi.io/api/v1/animals/${name}`
+      )
       .pipe(map(this.mapper.mapFrom));
   }
 }

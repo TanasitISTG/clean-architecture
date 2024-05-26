@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { AnimalModel } from '../../core/models/animal.model';
 import { GetAllAnimalsUseCase } from '../../core/usecases/animal/get-animals.usecase';
 import { ReplaySubject, takeUntil } from 'rxjs';
@@ -7,7 +6,7 @@ import { ReplaySubject, takeUntil } from 'rxjs';
 @Component({
   selector: 'app-animal-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   providers: [GetAllAnimalsUseCase],
   templateUrl: './animal-list.component.html',
   styleUrl: './animal-list.component.scss'
@@ -27,9 +26,5 @@ export class AnimalListComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.destroyed$.next(true);
     this.destroyed$.complete();
-  }
-
-  onSelectedAnimal(name: string) {
-    console.log(name);
   }
 }

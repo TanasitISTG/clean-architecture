@@ -1,16 +1,8 @@
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Age</th>
-    </tr>
-  </thead>
-  <tbody>
-    @for (animal of animals; track $index) {
-      <tr (click)="onSelectedAnimal(animal.name)">
-        <td>{{ animal.name }}</td>
-        <td>{{ animal.age }}</td>
-      </tr>
-    }
-  </tbody>
-</table>
+<div>
+  @for (animal of animals; track $index) {
+    <div>
+      <span>{{ animal.name }}, </span>
+      <span>{{ animal.age }}</span>
+    </div>
+  }
+</div>

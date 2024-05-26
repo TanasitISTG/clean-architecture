@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { GetAllAnimalsUseCase } from '../../domain/usecases/animal/get-animals.usecase';
-import { AnimalModel } from '../../domain/models/animal.model';
 import { CommonModule } from '@angular/common';
+import { AnimalModel } from '../../core/models/animal.model';
+import { GetAllAnimalsUseCase } from '../../core/usecases/animal/get-animals.usecase';
 
 @Component({
   selector: 'app-animal-list',

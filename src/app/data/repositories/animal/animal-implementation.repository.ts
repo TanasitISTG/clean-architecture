@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { AnimalRepository } from '../../../domain/repositories/animal.repositoy';
 import { Observable, filter, from, map, toArray } from 'rxjs';
-import { AnimalModel } from '../../../domain/models/animal.model';
 import { AnimalImplementationRepositoryMapper } from './animal.mapper';
 import { AnimalEntity } from './animal.entity';
+import { AnimalModel } from '../../../core/models/animal.model';
+import { AnimalRepository } from '../../../core/repositories/animal.repositoy';
 
 @Injectable({
   providedIn: 'root',

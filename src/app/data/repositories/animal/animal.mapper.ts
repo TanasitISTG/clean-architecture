@@ -1,5 +1,5 @@
-import { Mapper } from "../../../base/mapper";
-import { AnimalModel } from "../../../domain/models/animal.model";
+import { Mapper } from "../../../core/base/mapper";
+import { AnimalModel } from "../../../core/models/animal.model";
 import { AnimalEntity } from "./animal.entity";
 
 export class AnimalImplementationRepositoryMapper extends Mapper <AnimalEntity, AnimalModel> {
